@@ -68,10 +68,17 @@ class ExactDevanagariSearchTests(SearchTestMixin, TestCase):
         self.assertEqual(results[0].match_type, EXACT_DEVANAGARI)
         self.assertEqual(results[0].confidence, 1.0)
 
-    def test_dharma_devanagari(self):
-        """धर्म is not in the Garuda set — should return nothing."""
-        results = search("धर्म")
+    def test_nonexistent_devanagari(self):
+        """A word not in the dictionary should return nothing."""
+        results = search("पुस्तक")
         self.assertEqual(len(results), 0)
+
+    def test_dharma_devanagari(self):
+        """धर्म is in the dictionary — should return exact Devanagari match."""
+        results = search("धर्म")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0].entry.headword, "धर्म")
+        self.assertEqual(results[0].match_type, EXACT_DEVANAGARI)
 
     def test_karma_devanagari(self):
         results = search("कर्म")
@@ -146,15 +153,12 @@ class PartialMatchTests(SearchTestMixin, TestCase):
     """Stage 6: Prefix / partial matching."""
 
     def test_dharm_prefix(self):
-        """'dharm' should match 'dharma' (कर्म's transliteration is 'karma',
-        but 'dharm' is not in our data — test partial matching behaviour)."""
+        """'dharm' should match 'धर्म' (as exact romanised variant)."""
         results = search("dharm")
-        # 'dharm' is not a prefix of 'karma', but it IS close to 'karm'.
-        # Since there's no dharma entry, we should get fuzzy results or nothing.
-        # This tests that we don't crash and handle gracefully.
-        # The actual result depends on fuzzy threshold.
+        headwords = [r.entry.headword for r in results]
+        self.assertIn("धर्म", headwords)
         for r in results:
-            self.assertIn(r.match_type, (PARTIAL, FUZZY, NORMALISED))
+            self.assertIn(r.match_type, (EXACT_ROMANISED, PARTIAL, FUZZY, NORMALISED))
 
     def test_prak_prefix(self):
         """'prak' should match प्रकाश via prefix."""

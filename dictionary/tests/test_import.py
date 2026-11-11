@@ -16,10 +16,10 @@ class ImportDictionaryCommandTests(TestCase):
     """Tests for `python manage.py import_dictionary`."""
 
     def test_import_creates_entries(self):
-        """Importing the default data file creates all 10 starter entries."""
+        """Importing the default data file creates all starter entries."""
         call_command("import_dictionary", verbosity=0)
 
-        self.assertEqual(DictionaryEntry.objects.count(), 10)
+        self.assertEqual(DictionaryEntry.objects.count(), 50)
 
     def test_import_creates_meanings(self):
         """Every entry should have at least one meaning."""
@@ -65,7 +65,7 @@ class ImportDictionaryCommandTests(TestCase):
         call_command("import_dictionary", verbosity=0)
         call_command("import_dictionary", verbosity=0)
 
-        self.assertEqual(DictionaryEntry.objects.count(), 10)
+        self.assertEqual(DictionaryEntry.objects.count(), 50)
 
     def test_variants_not_duplicated_on_reimport(self):
         """Running the import twice must not duplicate romanised variants."""

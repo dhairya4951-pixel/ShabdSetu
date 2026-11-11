@@ -38,6 +38,8 @@ POS_MAP = {
     "noun (m.)": "noun",
     "noun (f.)": "noun",
     "noun (n.)": "noun",
+    "noun (m./n.)": "noun",
+    "noun (f./m.)": "noun",
     "verb": "verb",
     "adjective": "adj",
     "adj": "adj",

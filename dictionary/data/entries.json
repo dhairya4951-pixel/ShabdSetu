@@ -1,12 +1,812 @@
 [
-  {"id": 1, "headword": "शिक्षा", "transliteration": "śikṣā", "romanised": ["shiksha", "siksha", "shiksa"], "pos": "noun (f.)", "meanings": ["education", "learning"], "example": "शिक्षा हर बच्चे का अधिकार है।"},
-  {"id": 2, "headword": "भाषा", "transliteration": "bhāṣā", "romanised": ["bhasha", "bhasa", "bhaasha"], "pos": "noun (f.)", "meanings": ["language", "speech"], "example": "हिंदी भारत की एक प्रमुख भाषा है।"},
-  {"id": 3, "headword": "शब्द", "transliteration": "śabda", "romanised": ["shabd", "shabda", "sabd"], "pos": "noun (m.)", "meanings": ["word", "sound"], "example": "इस शब्द का अर्थ क्या है?"},
-  {"id": 4, "headword": "प्रकाश", "transliteration": "prakāśa", "romanised": ["prakash", "prakaash", "prakasha"], "pos": "noun (m.)", "meanings": ["light", "brightness"], "example": "सूरज का प्रकाश कमरे में फैल गया।"},
-  {"id": 5, "headword": "वृक्ष", "transliteration": "vṛkṣa", "romanised": ["vriksh", "vriksha", "vruksh"], "pos": "noun (m.)", "meanings": ["tree"], "example": "आँगन में एक पुराना वृक्ष है।"},
-  {"id": 6, "headword": "समय", "transliteration": "samaya", "romanised": ["samay", "samaya", "samai"], "pos": "noun (m.)", "meanings": ["time", "occasion"], "example": "समय का सही उपयोग करो।"},
-  {"id": 7, "headword": "कर्म", "transliteration": "karma", "romanised": ["karm", "karma"], "pos": "noun (m.)", "meanings": ["action, deed", "duty"], "example": "अच्छे कर्म का फल अच्छा होता है।"},
-  {"id": 8, "headword": "शांति", "transliteration": "śānti", "romanised": ["shanti", "shaanti", "santi"], "pos": "noun (f.)", "meanings": ["peace", "calm"], "example": "गाँव में शांति का माहौल है।"},
-  {"id": 9, "headword": "प्रेम", "transliteration": "prema", "romanised": ["prem", "prema"], "pos": "noun (m.)", "meanings": ["love", "affection"], "example": "माँ का प्रेम निस्वार्थ होता है।"},
-  {"id": 10, "headword": "सत्य", "transliteration": "satya", "romanised": ["satya", "saty"], "pos": "noun (m.)", "meanings": ["truth"], "example": "सत्य की हमेशा जीत होती है।"}
+  {
+    "id": 1,
+    "headword": "शिक्षा",
+    "transliteration": "śikṣā",
+    "romanised": [
+      "shiksha",
+      "siksha",
+      "shiksa"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "education",
+      "learning"
+    ],
+    "example": "शिक्षा हर बच्चे का अधिकार है।"
+  },
+  {
+    "id": 2,
+    "headword": "भाषा",
+    "transliteration": "bhāṣā",
+    "romanised": [
+      "bhasha",
+      "bhasa",
+      "bhaasha"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "language",
+      "speech"
+    ],
+    "example": "हिंदी भारत की एक प्रमुख भाषा है।"
+  },
+  {
+    "id": 3,
+    "headword": "शब्द",
+    "transliteration": "śabda",
+    "romanised": [
+      "shabd",
+      "shabda",
+      "sabd"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "word",
+      "sound"
+    ],
+    "example": "इस शब्द का अर्थ क्या है?"
+  },
+  {
+    "id": 4,
+    "headword": "प्रकाश",
+    "transliteration": "prakāśa",
+    "romanised": [
+      "prakash",
+      "prakaash",
+      "prakasha"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "light",
+      "brightness"
+    ],
+    "example": "सूरज का प्रकाश कमरे में फैल गया।"
+  },
+  {
+    "id": 5,
+    "headword": "वृक्ष",
+    "transliteration": "vṛkṣa",
+    "romanised": [
+      "vriksh",
+      "vriksha",
+      "vruksh"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "tree"
+    ],
+    "example": "आँगन में एक पुराना वृक्ष है।"
+  },
+  {
+    "id": 6,
+    "headword": "समय",
+    "transliteration": "samaya",
+    "romanised": [
+      "samay",
+      "samaya",
+      "samai"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "time",
+      "occasion"
+    ],
+    "example": "समय का सही उपयोग करो।"
+  },
+  {
+    "id": 7,
+    "headword": "कर्म",
+    "transliteration": "karma",
+    "romanised": [
+      "karm",
+      "karma"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "action, deed",
+      "duty"
+    ],
+    "example": "अच्छे कर्म का फल अच्छा होता है।"
+  },
+  {
+    "id": 8,
+    "headword": "शांति",
+    "transliteration": "śānti",
+    "romanised": [
+      "shanti",
+      "shaanti",
+      "santi"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "peace",
+      "calm"
+    ],
+    "example": "गाँव में शांति का माहौल है।"
+  },
+  {
+    "id": 9,
+    "headword": "प्रेम",
+    "transliteration": "prema",
+    "romanised": [
+      "prem",
+      "prema"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "love",
+      "affection"
+    ],
+    "example": "माँ का प्रेम निस्वार्थ होता है।"
+  },
+  {
+    "id": 10,
+    "headword": "सत्य",
+    "transliteration": "satya",
+    "romanised": [
+      "satya",
+      "saty"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "truth"
+    ],
+    "example": "सत्य की हमेशा जीत होती है।"
+  },
+  {
+    "id": 11,
+    "headword": "धर्म",
+    "transliteration": "dharma",
+    "romanised": [
+      "dharma",
+      "dharm",
+      "dharam"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "duty",
+      "righteousness",
+      "moral order",
+      "law"
+    ],
+    "example": "धर्म का पालन करना प्रत्येक व्यक्ति के लिए महत्वपूर्ण है।"
+  },
+  {
+    "id": 12,
+    "headword": "योग",
+    "transliteration": "yoga",
+    "romanised": [
+      "yoga",
+      "yog"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "yoga",
+      "union",
+      "discipline"
+    ],
+    "example": "योग शरीर और मन को संतुलित रखने में सहायक है।"
+  },
+  {
+    "id": 13,
+    "headword": "ज्ञान",
+    "transliteration": "jñāna",
+    "romanised": [
+      "gyan",
+      "gyaan",
+      "jnana",
+      "gyana"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "knowledge",
+      "understanding",
+      "wisdom"
+    ],
+    "example": "ज्ञान अनुभव और अध्ययन से बढ़ता है।"
+  },
+  {
+    "id": 14,
+    "headword": "विद्या",
+    "transliteration": "vidyā",
+    "romanised": [
+      "vidya",
+      "vidyaa",
+      "vidhya"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "knowledge",
+      "learning",
+      "education"
+    ],
+    "example": "विद्या मनुष्य को विवेकपूर्ण बनाती है।"
+  },
+  {
+    "id": 15,
+    "headword": "गुरु",
+    "transliteration": "guru",
+    "romanised": [
+      "guru",
+      "guroo",
+      "guruu"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "teacher",
+      "preceptor",
+      "spiritual guide"
+    ],
+    "example": "गुरु ने विद्यार्थियों को धैर्य से समझाया।"
+  },
+  {
+    "id": 16,
+    "headword": "मित्र",
+    "transliteration": "mitra",
+    "romanised": [
+      "mitra",
+      "mitr"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "friend",
+      "companion"
+    ],
+    "example": "सच्चा मित्र कठिन समय में हमारा साथ देता है।"
+  },
+  {
+    "id": 17,
+    "headword": "अग्नि",
+    "transliteration": "agni",
+    "romanised": [
+      "agni",
+      "agnee",
+      "agnii"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "fire",
+      "sacrificial fire",
+      "fire deity"
+    ],
+    "example": "वैदिक परंपरा में अग्नि का विशेष महत्व है।"
+  },
+  {
+    "id": 18,
+    "headword": "जल",
+    "transliteration": "jala",
+    "romanised": [
+      "jal",
+      "jala"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "water"
+    ],
+    "example": "जल जीवन के लिए अत्यंत आवश्यक है।"
+  },
+  {
+    "id": 19,
+    "headword": "सूर्य",
+    "transliteration": "sūrya",
+    "romanised": [
+      "surya",
+      "soorya",
+      "sury"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "sun",
+      "sun deity"
+    ],
+    "example": "सूर्य पूर्व दिशा से उदय होता है।"
+  },
+  {
+    "id": 20,
+    "headword": "चन्द्र",
+    "transliteration": "candra",
+    "romanised": [
+      "chandra",
+      "chandr",
+      "chand"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "moon",
+      "moon deity"
+    ],
+    "example": "कवि ने अपनी कविता में चन्द्र का सुंदर वर्णन किया।"
+  },
+  {
+    "id": 21,
+    "headword": "पृथ्वी",
+    "transliteration": "pṛthvī",
+    "romanised": [
+      "prithvi",
+      "prithvee",
+      "pruthvi"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "earth",
+      "ground",
+      "the planet Earth"
+    ],
+    "example": "पृथ्वी सूर्य की परिक्रमा करती है।"
+  },
+  {
+    "id": 22,
+    "headword": "आकाश",
+    "transliteration": "ākāśa",
+    "romanised": [
+      "akash",
+      "aakash",
+      "akaash"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "sky",
+      "space",
+      "ether"
+    ],
+    "example": "आकाश में आज बहुत सारे बादल छाए हुए हैं।"
+  },
+  {
+    "id": 23,
+    "headword": "शक्ति",
+    "transliteration": "śakti",
+    "romanised": [
+      "shakti",
+      "sakti"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "power",
+      "strength",
+      "energy",
+      "capacity"
+    ],
+    "example": "शक्ति का सही उपयोग करना चाहिए।"
+  },
+  {
+    "id": 24,
+    "headword": "भक्ति",
+    "transliteration": "bhakti",
+    "romanised": [
+      "bhakti",
+      "bhaktee"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "devotion",
+      "worship",
+      "faithful dedication"
+    ],
+    "example": "भक्ति में श्रद्धा और समर्पण का भाव होता है।"
+  },
+  {
+    "id": 25,
+    "headword": "करुणा",
+    "transliteration": "karuṇā",
+    "romanised": [
+      "karuna",
+      "karunaa"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "compassion",
+      "mercy",
+      "sympathy"
+    ],
+    "example": "करुणा हमें दूसरों के दुःख को समझना सिखाती है।"
+  },
+  {
+    "id": 26,
+    "headword": "दया",
+    "transliteration": "dayā",
+    "romanised": [
+      "daya",
+      "daaya"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "kindness",
+      "compassion",
+      "mercy"
+    ],
+    "example": "दया करना एक मानवीय गुण है।"
+  },
+  {
+    "id": 27,
+    "headword": "अहिंसा",
+    "transliteration": "ahiṃsā",
+    "romanised": [
+      "ahimsa",
+      "ahinsa",
+      "ahimsaa"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "non-violence",
+      "non-injury",
+      "avoidance of harm"
+    ],
+    "example": "अहिंसा का संदेश शांति और सह-अस्तित्व को बढ़ावा देता है।"
+  },
+  {
+    "id": 28,
+    "headword": "संस्कार",
+    "transliteration": "saṃskāra",
+    "romanised": [
+      "sanskar",
+      "sanskaar",
+      "samskara"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "refinement",
+      "cultural values",
+      "ritual impression",
+      "ceremony"
+    ],
+    "example": "संस्कार परिवार और समाज से विकसित होते हैं।"
+  },
+  {
+    "id": 29,
+    "headword": "संस्कृति",
+    "transliteration": "saṃskṛti",
+    "romanised": [
+      "sanskriti",
+      "sanskruti"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "culture",
+      "civilization",
+      "cultivation"
+    ],
+    "example": "संस्कृति किसी समाज की पहचान को दर्शाती है।"
+  },
+  {
+    "id": 30,
+    "headword": "प्रकृति",
+    "transliteration": "prakṛti",
+    "romanised": [
+      "prakriti",
+      "prakruti",
+      "prakrit"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "nature",
+      "natural world",
+      "inherent character"
+    ],
+    "example": "प्रकृति का संरक्षण हम सबकी जिम्मेदारी है।"
+  },
+  {
+    "id": 31,
+    "headword": "आत्मा",
+    "transliteration": "ātmā",
+    "romanised": [
+      "atma",
+      "aatma",
+      "atman",
+      "aatman"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "soul",
+      "self",
+      "inner essence"
+    ],
+    "example": "आत्मा के विषय में अनेक दार्शनिक विचार मिलते हैं।"
+  },
+  {
+    "id": 32,
+    "headword": "बुद्धि",
+    "transliteration": "buddhi",
+    "romanised": [
+      "buddhi",
+      "budhi",
+      "buddhee"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "intellect",
+      "intelligence",
+      "understanding"
+    ],
+    "example": "बुद्धि से मनुष्य सही और गलत में अंतर कर सकता है।"
+  },
+  {
+    "id": 33,
+    "headword": "चित्त",
+    "transliteration": "citta",
+    "romanised": [
+      "chitta",
+      "chitt",
+      "chit"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "mind",
+      "consciousness",
+      "mental awareness"
+    ],
+    "example": "चित्त को एकाग्र करना ध्यान का महत्वपूर्ण अभ्यास है।"
+  },
+  {
+    "id": 34,
+    "headword": "हृदय",
+    "transliteration": "hṛdaya",
+    "romanised": [
+      "hriday",
+      "hridaya",
+      "hruday"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "heart",
+      "core",
+      "centre"
+    ],
+    "example": "हृदय शरीर में रक्त पंप करने का कार्य करता है।"
+  },
+  {
+    "id": 35,
+    "headword": "जीवन",
+    "transliteration": "jīvana",
+    "romanised": [
+      "jeevan",
+      "jivan",
+      "jivana"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "life",
+      "existence",
+      "living"
+    ],
+    "example": "जीवन में सीखने की प्रक्रिया कभी समाप्त नहीं होती।"
+  },
+  {
+    "id": 36,
+    "headword": "मृत्यु",
+    "transliteration": "mṛtyu",
+    "romanised": [
+      "mrityu",
+      "mrutyu",
+      "mrityoo"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "death",
+      "demise"
+    ],
+    "example": "मृत्यु जीवन का एक प्राकृतिक सत्य है।"
+  },
+  {
+    "id": 37,
+    "headword": "जन्म",
+    "transliteration": "janma",
+    "romanised": [
+      "janma",
+      "janm"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "birth",
+      "origin",
+      "coming into existence"
+    ],
+    "example": "जन्म के बाद बच्चे की देखभाल आवश्यक होती है।"
+  },
+  {
+    "id": 38,
+    "headword": "स्वास्थ्य",
+    "transliteration": "svāsthya",
+    "romanised": [
+      "swasthya",
+      "svasthya",
+      "swasth"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "health",
+      "well-being",
+      "physical and mental fitness"
+    ],
+    "example": "अच्छे स्वास्थ्य के लिए संतुलित आहार आवश्यक है।"
+  },
+  {
+    "id": 39,
+    "headword": "आरोग्य",
+    "transliteration": "ārogya",
+    "romanised": [
+      "arogya",
+      "aarogya"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "good health",
+      "wellness",
+      "freedom from disease"
+    ],
+    "example": "आयुर्वेद में आरोग्य को विशेष महत्व दिया गया है।"
+  },
+  {
+    "id": 40,
+    "headword": "भोजन",
+    "transliteration": "bhojana",
+    "romanised": [
+      "bhojan",
+      "bhojana"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "food",
+      "meal",
+      "act of eating"
+    ],
+    "example": "भोजन करने से पहले हाथ धोने चाहिए।"
+  },
+  {
+    "id": 41,
+    "headword": "अन्न",
+    "transliteration": "anna",
+    "romanised": [
+      "anna",
+      "ann"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "food",
+      "grain",
+      "cereal"
+    ],
+    "example": "अन्न का सम्मान करना चाहिए और उसे व्यर्थ नहीं गँवाना चाहिए।"
+  },
+  {
+    "id": 42,
+    "headword": "वायु",
+    "transliteration": "vāyu",
+    "romanised": [
+      "vayu",
+      "vaayu"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "air",
+      "wind",
+      "breeze"
+    ],
+    "example": "वायु के बिना जीवन संभव नहीं है।"
+  },
+  {
+    "id": 43,
+    "headword": "नदी",
+    "transliteration": "nadī",
+    "romanised": [
+      "nadi",
+      "nadee"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "river",
+      "flowing watercourse"
+    ],
+    "example": "नदी का जल अनेक जीवों के लिए उपयोगी है।"
+  },
+  {
+    "id": 44,
+    "headword": "पर्वत",
+    "transliteration": "parvata",
+    "romanised": [
+      "parvat",
+      "parvata"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "mountain",
+      "hill",
+      "mountain range"
+    ],
+    "example": "पर्वतों पर सर्दियों में बर्फ जम जाती है।"
+  },
+  {
+    "id": 45,
+    "headword": "वन",
+    "transliteration": "vana",
+    "romanised": [
+      "van",
+      "vana"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "forest",
+      "woodland",
+      "wilderness"
+    ],
+    "example": "वन अनेक जीवों का प्राकृतिक निवास हैं।"
+  },
+  {
+    "id": 46,
+    "headword": "पुष्प",
+    "transliteration": "puṣpa",
+    "romanised": [
+      "pushp",
+      "pushpa"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "flower",
+      "blossom"
+    ],
+    "example": "पुष्पों की सुगंध से बगीचा महक उठा।"
+  },
+  {
+    "id": 47,
+    "headword": "फल",
+    "transliteration": "phala",
+    "romanised": [
+      "phal",
+      "phala"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "fruit",
+      "result",
+      "outcome"
+    ],
+    "example": "फल स्वास्थ्य के लिए उपयोगी होते हैं।"
+  },
+  {
+    "id": 48,
+    "headword": "गृह",
+    "transliteration": "gṛha",
+    "romanised": [
+      "griha",
+      "grih",
+      "grha"
+    ],
+    "pos": "noun (n.)",
+    "meanings": [
+      "house",
+      "home",
+      "residence"
+    ],
+    "example": "गृह में सभी सदस्यों का स्वागत किया गया।"
+  },
+  {
+    "id": 49,
+    "headword": "माता",
+    "transliteration": "mātā",
+    "romanised": [
+      "mata",
+      "maata"
+    ],
+    "pos": "noun (f.)",
+    "meanings": [
+      "mother",
+      "female parent"
+    ],
+    "example": "माता ने बच्चे को एक सुंदर कहानी सुनाई।"
+  },
+  {
+    "id": 50,
+    "headword": "पिता",
+    "transliteration": "pitā",
+    "romanised": [
+      "pita",
+      "pitaa"
+    ],
+    "pos": "noun (m.)",
+    "meanings": [
+      "father",
+      "male parent"
+    ],
+    "example": "पिता अपने परिवार की देखभाल करते हैं।"
+  }
 ]
