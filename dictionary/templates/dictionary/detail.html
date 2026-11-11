@@ -1,0 +1,74 @@
+{% extends "dictionary/base.html" %}
+
+{% block title %}{{ entry.headword }} — शब्दसेतु{% endblock %}
+
+{% block content %}
+<section class="detail-section">
+    <div class="container">
+
+        {# ── Back link ── #}
+        <nav class="detail-nav">
+            <a href="{% url 'dictionary:home' %}" class="back-link">← Back to search</a>
+        </nav>
+
+        {# ── Headword ── #}
+        <header class="detail-header">
+            <h1 class="detail-headword">{{ entry.headword }}</h1>
+            <p class="detail-transliteration">{{ entry.transliteration }}</p>
+            <span class="detail-pos">{{ pos_display }}</span>
+        </header>
+
+        {# ── Meanings ── #}
+        <div class="detail-block">
+            <h2 class="detail-label">Meanings</h2>
+            <ol class="detail-meanings">
+                {% for meaning in meanings %}
+                <li>{{ meaning.text }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+
+        {# ── Example ── #}
+        {% if entry.example %}
+        <div class="detail-block">
+            <h2 class="detail-label">Example</h2>
+            <blockquote class="detail-example">{{ entry.example }}</blockquote>
+        </div>
+        {% endif %}
+
+        {# ── Romanised Variants ── #}
+        {% if variants %}
+        <div class="detail-block">
+            <h2 class="detail-label">Romanised spellings</h2>
+            <ul class="detail-variants">
+                {% for variant in variants %}
+                <li class="variant-tag">{{ variant.spelling }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {# ── Source Information ── #}
+        {% if entry.source_name or entry.source_url %}
+        <div class="detail-block">
+            <h2 class="detail-label">Source</h2>
+            <p class="detail-source">
+                {% if entry.source_name %}{{ entry.source_name }}{% endif %}
+                {% if entry.source_url %}
+                    — <a href="{{ entry.source_url }}" target="_blank" rel="noopener noreferrer">View source</a>
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        {# ── Verification Status ── #}
+        {% if entry.is_verified %}
+        <div class="detail-block">
+            <p class="detail-verified">✓ Verified by an editor</p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}
+

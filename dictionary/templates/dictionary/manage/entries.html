@@ -1,0 +1,122 @@
+{% extends "dictionary/manage/base.html" %}
+
+{% block title %}All Entries{% endblock %}
+{% block page_title %}All Entries{% endblock %}
+
+{% block content %}
+
+<!-- ── Filters ── -->
+<div class="filter-bar">
+    <form method="get" action="{% url 'manage:entries' %}" class="filter-form">
+        <div class="filter-group">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search headword or variant…"
+                   class="form-input form-input--filter" aria-label="Search">
+        </div>
+        <div class="filter-group">
+            <select name="pos" class="form-select form-select--filter" aria-label="Part of speech">
+                <option value="">All POS</option>
+                {% for code, label in pos_choices %}
+                <option value="{{ code }}" {% if pos_filter == code %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="filter-group">
+            <select name="verified" class="form-select form-select--filter" aria-label="Verification status">
+                <option value="">All Status</option>
+                <option value="yes" {% if verified_filter == "yes" %}selected{% endif %}>Verified</option>
+                <option value="no" {% if verified_filter == "no" %}selected{% endif %}>Unverified</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn--secondary btn--small">Filter</button>
+        {% if query or pos_filter or verified_filter %}
+        <a href="{% url 'manage:entries' %}" class="btn btn--ghost btn--small">Clear</a>
+        {% endif %}
+    </form>
+
+    <a href="{% url 'manage:entry_create' %}" class="btn btn--primary btn--small">＋ Add Entry</a>
+</div>
+
+<!-- ── Entries table ── -->
+{% if page_obj.object_list %}
+<div class="table-wrapper">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Headword</th>
+                <th>Transliteration</th>
+                <th>POS</th>
+                <th>Status</th>
+                <th>Updated</th>
+                <th class="th-actions">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in page_obj %}
+            <tr>
+                <td class="td-headword">
+                    <a href="{% url 'manage:entry_detail' pk=entry.pk %}" class="table-link table-link--deva">
+                        {{ entry.headword }}
+                    </a>
+                </td>
+                <td class="text-muted">{{ entry.transliteration }}</td>
+                <td><span class="badge badge--pos">{{ entry.get_pos_display }}</span></td>
+                <td>
+                    {% if entry.is_verified %}
+                    <span class="badge badge--verified">Verified</span>
+                    {% else %}
+                    <span class="badge badge--unverified">Unverified</span>
+                    {% endif %}
+                </td>
+                <td class="text-muted text-small">{{ entry.updated_at|date:"d M Y" }}</td>
+                <td class="td-actions">
+                    <a href="{% url 'manage:entry_detail' pk=entry.pk %}" class="action-link" title="View">View</a>
+                    <a href="{% url 'manage:entry_edit' pk=entry.pk %}" class="action-link" title="Edit">Edit</a>
+                    <a href="{% url 'manage:entry_delete' pk=entry.pk %}" class="action-link action-link--danger" title="Delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- ── Pagination ── -->
+{% if page_obj.has_other_pages %}
+<nav class="pagination" aria-label="Table pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if pos_filter %}&pos={{ pos_filter }}{% endif %}{% if verified_filter %}&verified={{ verified_filter }}{% endif %}"
+       class="page-link">← Prev</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+        <span class="page-link page-link--active">{{ num }}</span>
+        {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+        <a href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if pos_filter %}&pos={{ pos_filter }}{% endif %}{% if verified_filter %}&verified={{ verified_filter }}{% endif %}"
+           class="page-link">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if pos_filter %}&pos={{ pos_filter }}{% endif %}{% if verified_filter %}&verified={{ verified_filter }}{% endif %}"
+       class="page-link">Next →</a>
+    {% endif %}
+</nav>
+{% endif %}
+
+{% else %}
+<!-- ── Empty state ── -->
+<div class="empty-state">
+    {% if query or pos_filter or verified_filter %}
+    <h2 class="empty-state-title">No matching entries</h2>
+    <p class="empty-state-text">Try adjusting your search or filters.</p>
+    <a href="{% url 'manage:entries' %}" class="btn btn--secondary">Clear filters</a>
+    {% else %}
+    <h2 class="empty-state-title">No dictionary entries yet</h2>
+    <p class="empty-state-text">Start building your dictionary by adding the first entry.</p>
+    <a href="{% url 'manage:entry_create' %}" class="btn btn--primary">＋ Add First Entry</a>
+    {% endif %}
+</div>
+{% endif %}
+
+{% endblock %}
+

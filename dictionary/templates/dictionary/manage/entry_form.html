@@ -1,0 +1,140 @@
+{% extends "dictionary/manage/base.html" %}
+
+{% block title %}{% if is_edit %}Edit {{ entry.headword }}{% else %}Add New Entry{% endif %}{% endblock %}
+{% block page_title %}{% if is_edit %}Edit Entry{% else %}Add New Entry{% endif %}{% endblock %}
+
+{% block content %}
+<div class="form-container">
+
+    <form method="post" class="admin-form" id="entry-form" novalidate>
+        {% csrf_token %}
+
+        <!-- ── Core fields ── -->
+        <fieldset class="form-fieldset">
+            <legend class="form-legend">Word Information</legend>
+
+            <div class="form-row form-row--two">
+                <div class="form-group">
+                    <label for="id_headword" class="form-label">
+                        Devanagari Headword <span class="required">*</span>
+                    </label>
+                    {{ form.headword }}
+                    {% if form.headword.errors %}
+                    <p class="form-error">{{ form.headword.errors.0 }}</p>
+                    {% endif %}
+                    <p class="form-help">The word in Devanagari script</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_transliteration" class="form-label">
+                        IAST Transliteration <span class="required">*</span>
+                    </label>
+                    {{ form.transliteration }}
+                    {% if form.transliteration.errors %}
+                    <p class="form-error">{{ form.transliteration.errors.0 }}</p>
+                    {% endif %}
+                    <p class="form-help">e.g. śikṣā, bhāṣā, karma</p>
+                </div>
+            </div>
+
+            <div class="form-row form-row--two">
+                <div class="form-group">
+                    <label for="id_pos" class="form-label">
+                        Part of Speech <span class="required">*</span>
+                    </label>
+                    {{ form.pos }}
+                    {% if form.pos.errors %}
+                    <p class="form-error">{{ form.pos.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label form-label--checkbox">
+                        {{ form.is_verified }}
+                        <span>Mark as verified</span>
+                    </label>
+                    <p class="form-help">Only mark if you have independently checked this entry</p>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- ── Romanised Variants ── -->
+        <fieldset class="form-fieldset">
+            <legend class="form-legend">Romanised Spelling Variants</legend>
+            <p class="form-help">Common romanised spellings users might type to find this word.</p>
+
+            <div class="dynamic-fields" id="variants-container">
+                {% for variant in variants %}
+                <div class="dynamic-row">
+                    <input type="text" name="variant_spelling" value="{{ variant }}"
+                           class="form-input" placeholder="e.g. shiksha">
+                    <button type="button" class="btn btn--icon btn--remove-row" aria-label="Remove variant">&times;</button>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn--ghost btn--small btn--add-row" data-target="variants-container"
+                    data-name="variant_spelling" data-placeholder="e.g. shiksha">
+                ＋ Add variant
+            </button>
+        </fieldset>
+
+        <!-- ── Meanings ── -->
+        <fieldset class="form-fieldset">
+            <legend class="form-legend">Meanings <span class="required">*</span></legend>
+            <p class="form-help">At least one meaning is required. They will appear in the order listed.</p>
+
+            <div class="dynamic-fields" id="meanings-container">
+                {% for meaning in meaning_texts %}
+                <div class="dynamic-row">
+                    <input type="text" name="meaning_text" value="{{ meaning }}"
+                           class="form-input" placeholder="e.g. education, learning">
+                    <button type="button" class="btn btn--icon btn--remove-row" aria-label="Remove meaning">&times;</button>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn--ghost btn--small btn--add-row" data-target="meanings-container"
+                    data-name="meaning_text" data-placeholder="e.g. education, learning">
+                ＋ Add meaning
+            </button>
+        </fieldset>
+
+        <!-- ── Example ── -->
+        <fieldset class="form-fieldset">
+            <legend class="form-legend">Example &amp; Source</legend>
+
+            <div class="form-group">
+                <label for="id_example" class="form-label">Example Sentence</label>
+                {{ form.example }}
+                {% if form.example.errors %}
+                <p class="form-error">{{ form.example.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="form-row form-row--two">
+                <div class="form-group">
+                    <label for="id_source_name" class="form-label">Source Name</label>
+                    {{ form.source_name }}
+                </div>
+                <div class="form-group">
+                    <label for="id_source_url" class="form-label">Source URL</label>
+                    {{ form.source_url }}
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- ── Submit ── -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn--primary" id="submit-btn">
+                {% if is_edit %}Save Changes{% else %}Create Entry{% endif %}
+            </button>
+            {% if is_edit %}
+            <a href="{% url 'manage:entry_detail' pk=entry.pk %}" class="btn btn--secondary">Cancel</a>
+            {% else %}
+            <a href="{% url 'manage:entries' %}" class="btn btn--secondary">Cancel</a>
+            {% endif %}
+        </div>
+    </form>
+
+</div>
+{% endblock %}
+

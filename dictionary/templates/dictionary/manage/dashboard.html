@@ -1,0 +1,106 @@
+{% extends "dictionary/manage/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<!-- ── Statistics ── -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <span class="stat-value">{{ total_entries }}</span>
+        <span class="stat-label">Total Entries</span>
+    </div>
+    <div class="stat-card stat-card--verified">
+        <span class="stat-value">{{ verified_entries }}</span>
+        <span class="stat-label">Verified</span>
+    </div>
+    <div class="stat-card stat-card--unverified">
+        <span class="stat-value">{{ unverified_entries }}</span>
+        <span class="stat-label">Unverified</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value">{{ total_variants }}</span>
+        <span class="stat-label">Romanised Variants</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-value">{{ total_meanings }}</span>
+        <span class="stat-label">Meanings</span>
+    </div>
+</div>
+
+<!-- ── Recent entries ── -->
+<div class="dashboard-grid">
+
+    <div class="admin-card">
+        <div class="card-header">
+            <h2 class="card-title">Recently Added</h2>
+            <a href="{% url 'manage:entries' %}" class="card-link">View all →</a>
+        </div>
+        <div class="card-body">
+            {% if recent_added %}
+            <table class="admin-table admin-table--compact">
+                <thead>
+                    <tr>
+                        <th>Headword</th>
+                        <th>Transliteration</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in recent_added %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'manage:entry_detail' pk=entry.pk %}" class="table-link">
+                                {{ entry.headword }}
+                            </a>
+                        </td>
+                        <td class="text-muted">{{ entry.transliteration }}</td>
+                        <td class="text-muted text-small">{{ entry.created_at|date:"d M Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="empty-state-small">No entries yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="admin-card">
+        <div class="card-header">
+            <h2 class="card-title">Recently Updated</h2>
+            <a href="{% url 'manage:entries' %}" class="card-link">View all →</a>
+        </div>
+        <div class="card-body">
+            {% if recent_updated %}
+            <table class="admin-table admin-table--compact">
+                <thead>
+                    <tr>
+                        <th>Headword</th>
+                        <th>Transliteration</th>
+                        <th>Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in recent_updated %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'manage:entry_detail' pk=entry.pk %}" class="table-link">
+                                {{ entry.headword }}
+                            </a>
+                        </td>
+                        <td class="text-muted">{{ entry.transliteration }}</td>
+                        <td class="text-muted text-small">{{ entry.updated_at|date:"d M Y, H:i" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="empty-state-small">No entries yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+

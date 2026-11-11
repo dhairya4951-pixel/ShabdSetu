@@ -1,0 +1,40 @@
+{% extends "dictionary/manage/base.html" %}
+
+{% block title %}Delete {{ entry.headword }}{% endblock %}
+{% block page_title %}Delete Entry{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+
+    <div class="admin-card">
+        <div class="card-body">
+            <h2 class="delete-heading">Are you sure?</h2>
+            <p class="delete-text">
+                You are about to permanently delete the dictionary entry:
+            </p>
+
+            <div class="delete-entry-preview">
+                <span class="delete-headword">{{ entry.headword }}</span>
+                <span class="text-muted">{{ entry.transliteration }}</span>
+                <span class="badge badge--pos">{{ entry.get_pos_display }}</span>
+            </div>
+
+            <p class="delete-warning">
+                This will also delete all associated meanings ({{ entry.meaning_items.count }})
+                and romanised variants ({{ entry.romanised_variants.count }}).
+                This action cannot be undone.
+            </p>
+
+            <div class="delete-actions">
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn--danger">Yes, Delete Entry</button>
+                </form>
+                <a href="{% url 'manage:entry_detail' pk=entry.pk %}" class="btn btn--secondary">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+

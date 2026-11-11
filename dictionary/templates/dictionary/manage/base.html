@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %} — ShabdSetu Admin</title>
+
+    <!-- Fonts (same as public site) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Admin stylesheet -->
+    <link rel="stylesheet" href="{% static 'dictionary/css/admin.css' %}">
+</head>
+<body>
+    <div class="admin-layout">
+
+        <!-- ── Sidebar ── -->
+        <aside class="admin-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="{% url 'manage:dashboard' %}" class="sidebar-brand">
+                    <span class="sidebar-brand-deva">शब्दसेतु</span>
+                    <span class="sidebar-brand-sub">Admin</span>
+                </a>
+                <button class="sidebar-toggle" id="sidebar-close" aria-label="Close menu">&times;</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="{% url 'manage:dashboard' %}"
+                   class="nav-item {% if active_nav == 'dashboard' %}nav-item--active{% endif %}">
+                    <span class="nav-icon">◫</span> Dashboard
+                </a>
+                <a href="{% url 'manage:entries' %}"
+                   class="nav-item {% if active_nav == 'entries' %}nav-item--active{% endif %}">
+                    <span class="nav-icon">☰</span> All Entries
+                </a>
+                <a href="{% url 'manage:entry_create' %}"
+                   class="nav-item {% if active_nav == 'create' %}nav-item--active{% endif %}">
+                    <span class="nav-icon">＋</span> Add New Entry
+                </a>
+                <a href="{% url 'manage:verification' %}"
+                   class="nav-item {% if active_nav == 'verification' %}nav-item--active{% endif %}">
+                    <span class="nav-icon">✓</span> Verification
+                </a>
+
+                <div class="nav-divider"></div>
+
+                <a href="{% url 'dictionary:home' %}" class="nav-item nav-item--muted" target="_blank">
+                    <span class="nav-icon">↗</span> Public Dictionary
+                </a>
+                <form method="post" action="{% url 'manage:logout' %}" class="nav-logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-item nav-item--muted nav-item--button">
+                        <span class="nav-icon">⏻</span> Log Out
+                    </button>
+                </form>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="sidebar-user">{{ request.user.username }}</span>
+            </div>
+        </aside>
+
+        <!-- ── Main content ── -->
+        <div class="admin-main">
+            <header class="admin-topbar">
+                <button class="topbar-menu-btn" id="sidebar-open" aria-label="Open menu">☰</button>
+                <h1 class="topbar-title">{% block page_title %}Dashboard{% endblock %}</h1>
+            </header>
+
+            <!-- Django messages -->
+            {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                <div class="message message--{{ message.tags }}" role="alert">
+                    {{ message }}
+                    <button type="button" class="message-close" aria-label="Dismiss">&times;</button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="admin-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'dictionary/js/admin.js' %}"></script>
+</body>
+</html>
+

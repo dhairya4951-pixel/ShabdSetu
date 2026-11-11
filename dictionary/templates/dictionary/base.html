@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hi-EN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}शब्दसेतु — ShabdSetu{% endblock %}</title>
+    <meta name="description" content="A bilingual Hindi-English dictionary with Devanagari and Romanised search.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'dictionary/css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="{% url 'dictionary:home' %}" class="site-brand">
+                <span class="brand-devanagari">शब्दसेतु</span>
+                <span class="brand-english">ShabdSetu</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>शब्दसेतु — A bilingual Indian-language dictionary</p>
+            <p class="footer-sub">Garuda Prakashan × Rishihood</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'dictionary/js/main.js' %}"></script>
+</body>
+</html>
+

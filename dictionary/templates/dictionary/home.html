@@ -1,0 +1,152 @@
+{% extends "dictionary/base.html" %}
+{% load static %}
+
+{% block title %}
+{% if query %}{{ query }} — शब्दसेतु{% else %}शब्दसेतु — ShabdSetu Dictionary{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{# ── Hero / Search Section ── #}
+<section class="hero {% if query %}hero--compact{% endif %}">
+    <div class="container">
+
+        {% if not query %}
+        <h1 class="hero-title">
+            <span class="hero-devanagari">शब्दसेतु</span>
+            <span class="hero-english">ShabdSetu</span>
+        </h1>
+        <p class="hero-tagline">A bridge between scripts — search Hindi words in Devanagari or Roman letters</p>
+        {% endif %}
+
+        <form class="search-form" action="{% url 'dictionary:home' %}" method="get" role="search">
+            <label for="search-input" class="sr-only">Search for a word</label>
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="search-input"
+                    name="q"
+                    value="{{ query }}"
+                    placeholder="Type in Devanagari or English — शिक्षा, shiksha, dharma…"
+                    autocomplete="off"
+                    autofocus
+                >
+                <button type="submit" class="search-btn" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+            <p class="search-hint">Supports Devanagari, IAST, and common romanised spellings</p>
+        </form>
+    </div>
+</section>
+
+{% if query %}
+{# ── Results Section ── #}
+<section class="results-section">
+    <div class="container">
+
+        {% if has_exact %}
+        {# ── Exact / Confident Results ── #}
+        <div class="results-group">
+            <h2 class="results-heading">
+                {% if exact_results|length == 1 %}1 result{% else %}{{ exact_results|length }} results{% endif %}
+                for <span class="results-query">"{{ query }}"</span>
+            </h2>
+            <ul class="results-list">
+                {% for r in exact_results %}
+                <li class="result-card">
+                    <a href="{% url 'dictionary:word_detail' pk=r.entry.pk %}" class="result-link">
+                        <div class="result-head">
+                            <h3 class="result-headword">{{ r.entry.headword }}</h3>
+                            <span class="result-transliteration">{{ r.entry.transliteration }}</span>
+                            <span class="result-pos">{{ r.entry.get_pos_display }}</span>
+                        </div>
+                        <p class="result-meaning">
+                            {% for m in r.entry.meaning_items.all %}
+                                {{ m.text }}{% if not forloop.last %}; {% endif %}
+                            {% endfor %}
+                        </p>
+                        <span class="result-badge result-badge--exact">{{ r.match_label }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if suggestions %}
+        {# ── Fuzzy Suggestions ── #}
+        <div class="results-group results-group--suggestions">
+            {% if not has_exact %}
+            <h2 class="results-heading">
+                No exact match for <span class="results-query">"{{ query }}"</span>
+            </h2>
+            <p class="results-subtext">Did you mean one of these?</p>
+            {% else %}
+            <h3 class="results-heading results-heading--small">Similar words</h3>
+            {% endif %}
+            <ul class="results-list">
+                {% for r in suggestions %}
+                <li class="result-card result-card--suggestion">
+                    <a href="{% url 'dictionary:word_detail' pk=r.entry.pk %}" class="result-link">
+                        <div class="result-head">
+                            <h3 class="result-headword">{{ r.entry.headword }}</h3>
+                            <span class="result-transliteration">{{ r.entry.transliteration }}</span>
+                            <span class="result-pos">{{ r.entry.get_pos_display }}</span>
+                        </div>
+                        <p class="result-meaning">
+                            {% for m in r.entry.meaning_items.all %}
+                                {{ m.text }}{% if not forloop.last %}; {% endif %}
+                            {% endfor %}
+                        </p>
+                        <span class="result-badge result-badge--fuzzy">{{ r.match_label }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if not has_results %}
+        {# ── No Results ── #}
+        <div class="no-results">
+            <h2 class="no-results-title">No entries found</h2>
+            <p class="no-results-text">
+                We couldn't find <strong>"{{ query }}"</strong> in the dictionary.
+            </p>
+            <ul class="no-results-tips">
+                <li>Check your spelling or try a different romanisation</li>
+                <li>Try typing the word in Devanagari script</li>
+                <li>Use fewer characters — partial matches may help</li>
+            </ul>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% else %}
+{# ── About Section (shown only on initial homepage) ── #}
+<section class="about-section">
+    <div class="container">
+        <h2 class="about-heading">How it works</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3 class="about-card-title">Devanagari search</h3>
+                <p class="about-card-text">Type directly in Devanagari script for instant exact matches — <em>शिक्षा</em>, <em>प्रकाश</em>, <em>सत्य</em>.</p>
+            </div>
+            <div class="about-card">
+                <h3 class="about-card-title">Romanised search</h3>
+                <p class="about-card-text">Don't have a Devanagari keyboard? Type in Roman letters — <em>shiksha</em>, <em>prakash</em>, <em>karma</em>.</p>
+            </div>
+            <div class="about-card">
+                <h3 class="about-card-title">Intelligent matching</h3>
+                <p class="about-card-text">The search engine handles spelling variations, IAST diacritics, and suggests similar words for typos.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
+

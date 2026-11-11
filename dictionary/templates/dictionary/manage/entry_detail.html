@@ -1,0 +1,106 @@
+{% extends "dictionary/manage/base.html" %}
+
+{% block title %}{{ entry.headword }}{% endblock %}
+{% block page_title %}Entry Preview{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+
+    <!-- ── Navigation ── -->
+    <div class="detail-toolbar">
+        <a href="{% url 'manage:entries' %}" class="btn btn--ghost btn--small">← Back to Entries</a>
+        <div class="detail-toolbar-right">
+            <a href="{% url 'manage:entry_edit' pk=entry.pk %}" class="btn btn--primary btn--small">Edit</a>
+            <a href="{% url 'manage:entry_delete' pk=entry.pk %}" class="btn btn--danger btn--small">Delete</a>
+        </div>
+    </div>
+
+    <!-- ── Entry preview ── -->
+    <div class="admin-card detail-preview">
+        <div class="card-body">
+
+            <header class="preview-header">
+                <h2 class="preview-headword">{{ entry.headword }}</h2>
+                <p class="preview-transliteration">{{ entry.transliteration }}</p>
+                <span class="badge badge--pos">{{ pos_display }}</span>
+                {% if entry.is_verified %}
+                <span class="badge badge--verified">✓ Verified</span>
+                {% else %}
+                <span class="badge badge--unverified">Unverified</span>
+                {% endif %}
+            </header>
+
+            <!-- Meanings -->
+            <div class="preview-section">
+                <h3 class="preview-label">Meanings</h3>
+                <ol class="preview-meanings">
+                    {% for meaning in meanings %}
+                    <li>{{ meaning.text }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <!-- Example -->
+            {% if entry.example %}
+            <div class="preview-section">
+                <h3 class="preview-label">Example</h3>
+                <blockquote class="preview-example">{{ entry.example }}</blockquote>
+            </div>
+            {% endif %}
+
+            <!-- Romanised variants -->
+            {% if variants %}
+            <div class="preview-section">
+                <h3 class="preview-label">Romanised Spellings</h3>
+                <ul class="preview-variants">
+                    {% for variant in variants %}
+                    <li class="variant-chip">{{ variant.spelling }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Source -->
+            {% if entry.source_name or entry.source_url %}
+            <div class="preview-section">
+                <h3 class="preview-label">Source</h3>
+                <p class="text-muted">
+                    {% if entry.source_name %}{{ entry.source_name }}{% endif %}
+                    {% if entry.source_url %}
+                    — <a href="{{ entry.source_url }}" target="_blank" rel="noopener">{{ entry.source_url }}</a>
+                    {% endif %}
+                </p>
+            </div>
+            {% endif %}
+
+            <!-- Metadata -->
+            <div class="preview-section preview-meta">
+                <p class="text-muted text-small">
+                    Created: {{ entry.created_at|date:"d M Y, H:i" }} ·
+                    Updated: {{ entry.updated_at|date:"d M Y, H:i" }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── Quick verification toggle ── -->
+    <div class="admin-card">
+        <div class="card-body">
+            <form method="post" action="{% url 'manage:toggle_verify' pk=entry.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'manage:entry_detail' pk=entry.pk %}">
+                {% if entry.is_verified %}
+                <p>This entry is currently <strong>verified</strong>.</p>
+                <button type="submit" class="btn btn--secondary btn--small">Remove verification</button>
+                {% else %}
+                <p>This entry is currently <strong>unverified</strong>.</p>
+                <button type="submit" class="btn btn--primary btn--small">Mark as verified</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+

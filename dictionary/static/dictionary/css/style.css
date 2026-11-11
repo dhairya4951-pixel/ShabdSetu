@@ -1,0 +1,652 @@
+/*
+ * ShabdSetu — शब्दसेतु
+ * Premium bilingual dictionary stylesheet.
+ *
+ * Design tokens:
+ *   --ivory:    #FDFBF7  (warm background)
+ *   --cream:    #F5F0E8  (card backgrounds)
+ *   --charcoal: #2C2C2C  (primary text)
+ *   --ink:      #1A1A1A  (headings)
+ *   --saffron:  #C17817  (muted accent)
+ *   --saffron-light: #F0DFC0  (accent backgrounds)
+ *   --grey:     #6B6B6B  (secondary text)
+ *   --border:   #E0D8CC  (subtle borders)
+ */
+
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background-color: #FDFBF7;
+    color: #2C2C2C;
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+a {
+    color: #C17817;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    outline: 2px solid #C17817;
+    outline-offset: 2px;
+}
+
+/* Screen-reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ================================================================
+   CONTAINER
+   ================================================================ */
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+
+.site-header {
+    border-bottom: 1px solid #E0D8CC;
+    padding: 0.875rem 0;
+    background: #FDFBF7;
+}
+
+.site-brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.brand-devanagari {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1A1A1A;
+}
+
+.brand-english {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6B6B6B;
+    letter-spacing: 0.02em;
+}
+
+/* ================================================================
+   HERO / SEARCH
+   ================================================================ */
+
+.hero {
+    padding: 4rem 0 3rem;
+    text-align: center;
+}
+
+.hero--compact {
+    padding: 2rem 0 1.5rem;
+}
+
+.hero-title {
+    margin-bottom: 0.75rem;
+}
+
+.hero-devanagari {
+    display: block;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    line-height: 1.2;
+}
+
+.hero-english {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #6B6B6B;
+    letter-spacing: 0.04em;
+    margin-top: 0.25rem;
+}
+
+.hero-tagline {
+    font-size: 1.0625rem;
+    color: #6B6B6B;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+/* Search form */
+.search-form {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.search-box {
+    display: flex;
+    border: 2px solid #E0D8CC;
+    border-radius: 4px;
+    background: #fff;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+}
+
+.search-box:focus-within {
+    border-color: #C17817;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border: none;
+    outline: none;
+    font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    font-size: 1.0625rem;
+    color: #1A1A1A;
+    background: transparent;
+}
+
+.search-box input::placeholder {
+    color: #A0978A;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+}
+
+.search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+    border: none;
+    background: #C17817;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.search-btn:hover {
+    background: #A86510;
+}
+
+.search-btn:focus-visible {
+    outline: 2px solid #1A1A1A;
+    outline-offset: -2px;
+}
+
+.search-hint {
+    margin-top: 0.625rem;
+    font-size: 0.8125rem;
+    color: #A0978A;
+    text-align: center;
+}
+
+/* ================================================================
+   RESULTS
+   ================================================================ */
+
+.results-section {
+    padding-bottom: 3rem;
+}
+
+.results-group {
+    margin-bottom: 2rem;
+}
+
+.results-heading {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6B6B6B;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #E0D8CC;
+}
+
+.results-heading--small {
+    font-size: 0.9375rem;
+    margin-top: 1.5rem;
+}
+
+.results-query {
+    color: #1A1A1A;
+    font-weight: 600;
+}
+
+.results-subtext {
+    font-size: 0.9375rem;
+    color: #6B6B6B;
+    margin-bottom: 1rem;
+}
+
+.results-list {
+    list-style: none;
+}
+
+/* Result card */
+.result-card {
+    margin-bottom: 0.5rem;
+}
+
+.result-link {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: 1px solid #E0D8CC;
+    border-radius: 3px;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.result-link:hover {
+    border-color: #C17817;
+    box-shadow: 0 1px 4px rgba(193, 120, 23, 0.08);
+    text-decoration: none;
+}
+
+.result-link:focus-visible {
+    outline: 2px solid #C17817;
+    outline-offset: 1px;
+}
+
+.result-card--suggestion .result-link {
+    border-style: dashed;
+    background: #FDFBF7;
+}
+
+.result-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.375rem;
+}
+
+.result-headword {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.3;
+}
+
+.result-transliteration {
+    font-size: 0.9375rem;
+    color: #6B6B6B;
+    font-style: italic;
+}
+
+.result-pos {
+    font-size: 0.75rem;
+    color: #A0978A;
+    text-transform: lowercase;
+    padding: 0.125rem 0.375rem;
+    border: 1px solid #E0D8CC;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.result-meaning {
+    font-size: 0.9375rem;
+    color: #4A4A4A;
+    line-height: 1.5;
+}
+
+.result-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 0.125rem 0.5rem;
+    border-radius: 2px;
+}
+
+.result-badge--exact {
+    background: #E8F5E8;
+    color: #2D6A2D;
+}
+
+.result-badge--fuzzy {
+    background: #FFF3E0;
+    color: #A86510;
+}
+
+/* ================================================================
+   NO RESULTS
+   ================================================================ */
+
+.no-results {
+    text-align: center;
+    padding: 2.5rem 1rem;
+}
+
+.no-results-title {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 0.75rem;
+}
+
+.no-results-text {
+    font-size: 1rem;
+    color: #6B6B6B;
+    margin-bottom: 1.5rem;
+}
+
+.no-results-tips {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: #6B6B6B;
+}
+
+.no-results-tips li::before {
+    content: "·  ";
+    color: #C17817;
+    font-weight: 700;
+}
+
+/* ================================================================
+   ABOUT SECTION (homepage)
+   ================================================================ */
+
+.about-section {
+    padding: 2rem 0 3rem;
+    border-top: 1px solid #E0D8CC;
+}
+
+.about-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.about-card {
+    padding: 1.25rem;
+    border: 1px solid #E0D8CC;
+    border-radius: 3px;
+    background: #fff;
+}
+
+.about-card-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 0.375rem;
+}
+
+.about-card-text {
+    font-size: 0.875rem;
+    color: #6B6B6B;
+    line-height: 1.6;
+}
+
+.about-card-text em {
+    font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    font-style: normal;
+    color: #C17817;
+    font-weight: 500;
+}
+
+/* ================================================================
+   WORD DETAIL PAGE
+   ================================================================ */
+
+.detail-section {
+    padding: 2rem 0 3rem;
+}
+
+.detail-nav {
+    margin-bottom: 1.5rem;
+}
+
+.back-link {
+    font-size: 0.875rem;
+    color: #6B6B6B;
+}
+
+.back-link:hover {
+    color: #C17817;
+}
+
+.detail-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #E0D8CC;
+}
+
+.detail-headword {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+
+.detail-transliteration {
+    font-size: 1.25rem;
+    color: #6B6B6B;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.detail-pos {
+    display: inline-block;
+    font-size: 0.8125rem;
+    color: #A0978A;
+    padding: 0.1875rem 0.5rem;
+    border: 1px solid #E0D8CC;
+    border-radius: 2px;
+}
+
+/* Detail blocks */
+.detail-block {
+    margin-bottom: 1.75rem;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #A0978A;
+    margin-bottom: 0.5rem;
+}
+
+.detail-meanings {
+    padding-left: 1.25rem;
+    font-size: 1.0625rem;
+    color: #2C2C2C;
+    line-height: 1.7;
+}
+
+.detail-meanings li {
+    margin-bottom: 0.25rem;
+}
+
+.detail-meanings li::marker {
+    color: #C17817;
+}
+
+.detail-example {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1.125rem;
+    color: #4A4A4A;
+    border-left: 3px solid #C17817;
+    padding: 0.75rem 1rem;
+    background: #FAF7F2;
+    line-height: 1.7;
+}
+
+.detail-variants {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.variant-tag {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid #E0D8CC;
+    border-radius: 2px;
+    color: #4A4A4A;
+    background: #FAF7F2;
+}
+
+.detail-source {
+    font-size: 0.9375rem;
+    color: #6B6B6B;
+}
+
+.detail-verified {
+    font-size: 0.875rem;
+    color: #2D6A2D;
+    font-weight: 500;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+
+.site-footer {
+    border-top: 1px solid #E0D8CC;
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #A0978A;
+    margin-top: auto;
+}
+
+.footer-sub {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+/* Tablet (768px) */
+@media (min-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .hero-devanagari {
+        font-size: 3.5rem;
+    }
+}
+
+/* Small mobile (≤ 390px) */
+@media (max-width: 390px) {
+    .hero {
+        padding: 2.5rem 0 2rem;
+    }
+
+    .hero-devanagari {
+        font-size: 2.25rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.9375rem;
+    }
+
+    .search-box input {
+        font-size: 1rem;
+        padding: 0.75rem 0.75rem;
+    }
+
+    .search-box input::placeholder {
+        font-size: 0.8125rem;
+    }
+
+    .search-btn {
+        padding: 0.75rem;
+    }
+
+    .detail-headword {
+        font-size: 2.25rem;
+    }
+
+    .result-headword {
+        font-size: 1.25rem;
+    }
+
+    .result-head {
+        gap: 0.375rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+/* Very small (320px) */
+@media (max-width: 320px) {
+    .hero-devanagari {
+        font-size: 2rem;
+    }
+
+    .hero-english {
+        font-size: 1rem;
+    }
+
+    .search-box input::placeholder {
+        font-size: 0.75rem;
+    }
+
+    .detail-headword {
+        font-size: 2rem;
+    }
+}
+

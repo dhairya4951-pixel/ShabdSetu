@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In — ShabdSetu Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dictionary/css/admin.css' %}">
+</head>
+<body class="login-body">
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <span class="login-brand-deva">शब्दसेतु</span>
+                <span class="login-brand-sub">Staff Dashboard</span>
+            </div>
+
+            {% if messages %}
+            <div class="messages-container messages-container--login">
+                {% for message in messages %}
+                <div class="message message--{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'manage:login' %}{% if next %}?next={{ next }}{% endif %}">
+                {% csrf_token %}
+                {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="id_username" class="form-label">Username</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                    <p class="form-error">{{ form.username.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_password" class="form-label">Password</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                    <p class="form-error">{{ form.password.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--full">Log In</button>
+            </form>
+
+            <p class="login-footer-text">
+                <a href="{% url 'dictionary:home' %}">← Back to public dictionary</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
+
